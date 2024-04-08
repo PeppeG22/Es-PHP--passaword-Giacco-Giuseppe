@@ -1,12 +1,7 @@
 <?php
 
-$pass = readline('Inserisci la password:');
-
 //controllare se è di almeno 8 caretteri
 
-// $lenght = false;
-// $number = false;
-// $upper = false;
 
 function  checkLenght($string){
     if(strlen($string) >= 8){
@@ -18,7 +13,7 @@ function  checkLenght($string){
     
 };
 
-//$lenght  = checkLenght($pass);
+
 
 //controllare se c'è almeno un numero
 
@@ -33,7 +28,7 @@ function checkNumber($string){
     return false;
 };
 
-//$number =  checkNumber($pass);
+
 
 
 //controllare se c'è almeno una lettera maiuscola
@@ -50,7 +45,6 @@ function  checkUpper($string){
 };
 
 
-//$upper = checkUpper($pass);
 
 
 
@@ -61,11 +55,11 @@ function checkSpeChars($string){
 
     for ($i=0; $i < strlen($string) ; $i++) { 
         if(in_array($string[$i], $specialChars)){
-            echo "la tua password contiene un carattere speciale \n";
+            echo "la tua password contiene almeno un carattere speciale \n";
             return true;
         }
-        return  false;
     };
+    return  false;
 };
 
 //controllo finale
@@ -74,13 +68,17 @@ function checkSpeChars($string){
 function checkPass($string){
     if (checkLenght($string) && checkNumber($string) && checkUpper($string) && checkSpeChars($string)) {
         echo "la tua password va bene \n";
+        return true;
     }else{
         echo "la tua password non va bene \n";
+        return false;
     };
 };
 
 
-checkPass($pass);
+do  {
+    $pass = readline('Inserisci la password:');    
+} while(!checkPass($pass));
 
 
 ?>
